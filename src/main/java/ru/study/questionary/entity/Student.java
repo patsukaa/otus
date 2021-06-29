@@ -4,12 +4,11 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Builder
-public class Question {
+public class Student {
 
     @Getter
-    private String text;
+    private String firstName;
 
     @Getter
-    private String correctAnswer;
-
+    private String name;
 }
