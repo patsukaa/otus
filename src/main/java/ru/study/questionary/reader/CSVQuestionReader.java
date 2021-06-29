@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import ru.study.questionary.entity.Question;
 
-import javax.annotation.PostConstruct;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -19,13 +18,14 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 @Slf4j
-public class CSVQuestionReader {
+public class CSVQuestionReader implements QuestionReader {
 
     @Value("${questionaryFile}")
     private String fileName;
 
+
     public List<Question> readQuestions() {
-        if(fileName.isBlank() )
+        if (fileName.isBlank())
             throw new RuntimeException("File name cannot be blank");
 
         try {
@@ -52,8 +52,7 @@ public class CSVQuestionReader {
                             .correctAnswer(cortege[1])
                             .build())
                     .collect(toList());
-
-            reader.close();
+            csvReader.close();
             return questions;
         } catch (Exception e) {
             log.error("Cannot read questions from resources", e);

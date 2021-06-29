@@ -1,16 +1,17 @@
 package ru.study.questionary.repository;
 
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import ru.study.questionary.entity.Question;
 import ru.study.questionary.reader.CSVQuestionReader;
+import ru.study.questionary.reader.QuestionReader;
 
 import java.util.List;
 
-@Repository
+@Component
 public class QuestionCSVRepository implements QuestionRepository {
 
-    private CSVQuestionReader reader;
+    private QuestionReader reader;
 
     public QuestionCSVRepository(CSVQuestionReader reader) {
         this.reader = reader;
